@@ -15,6 +15,13 @@ func BenchmarkRandiGoMod(b *testing.B) {
 	}
 }
 
+func BenchmarkRandiGo(b *testing.B) {
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		_ = uint32(uint64(uint32(rand.Int31())) * uint64(2) >> 32)
+	}
+}
+
 func BenchmarkRandiWyrng(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
