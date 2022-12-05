@@ -8,6 +8,13 @@ import (
 
 var rng wyhash.SRNG
 
+func TestHash(t *testing.T) {
+	for i := 0; i < 65536; i++ {
+		if getXXH3AltIndexByStatic(uint16(i)) != getXXH3AltIndex(uint16(i)) {
+			t.Errorf("incorrect hash: %d", i)
+		}
+	}
+}
 func BenchmarkRandiGoMod(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
